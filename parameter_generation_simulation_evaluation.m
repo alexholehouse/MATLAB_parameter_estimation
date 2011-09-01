@@ -72,13 +72,13 @@ LPS_molar_mass = 100000;
 % parameter generation steps
 
 % Set for the number of loops in the monte carlo simulation
-N_montecarlo_iterations = 10;
+N_montecarlo_iterations = 1000;
 
 % Set the simulation length
 simulation_length = 7200; 
 
 % Set max timestep size of step through simulation (in seconds)
-max_timestep = 80; 
+max_timestep =100; 
 
 
 % Set the type of randomization the randomizer algorithm uses
@@ -205,7 +205,7 @@ set(configsetObj, 'StopTime', simulation_length);
 
 solver_options = get(configsetObj, 'SolverOptions');
 solver_options.MaxStep = max_timestep;
-solver_options.RelativeTolerance = 1e-01;
+solver_options.RelativeTolerance = 1e-02;
 
 % Get N_species
 N_species = length(model.species);
