@@ -344,16 +344,16 @@ for i = 1:length(missing_params)
             new_param(i,2) = randomizer(1E-04, 10, randomization_type);
             
         case 146      
-            % main.P.kf_LPS_TLR4 - original range is in ng/ml/min, which
+            % main.P.kf_LPS_TLR4 - original range is in 1/ng/ml/min, which
             % assuming a M of 100 000 Da for LPS we convert this to a range
-            % of 0.0001 to 1E-15
+            % of 1E-05 to 1E06 M-1/min
              new_param(i,1) = 146;
              new_param(i,2) = randomizer(1E-05, 10^6, randomization_type);
             
         case 147      
             % main.P.ko_MK2- range 10^-4 to 10
             new_param(i,1) = 147;
-            new_param(i,2) = randomizer(1E-04, 106, randomization_type);
+            new_param(i,2) = randomizer(1E-04, 10, randomization_type);
             
         case 148     
             % main.P.kc_p38P_Ppase_nucleus- range 10^-2 to 10^2

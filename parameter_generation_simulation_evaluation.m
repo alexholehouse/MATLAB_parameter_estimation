@@ -195,7 +195,7 @@ model.species(LPS_species_number).initialAmount = n_moles;
 % .......................................................................
 % Set the simulation options, based on settings entered by the user earlier
 % and some standard settinsg, e.g. we're using the ode23s ODE solver, and a
-% relative max toleranace of 1E-04
+% relative max toleranace of 1E-02
 %
 
 configsetObj = getconfigset(model, 'active');
@@ -210,7 +210,7 @@ solver_options.RelativeTolerance = 1e-02;
 % Get N_species
 N_species = length(model.species);
 
-% Identify missing varlues
+% Identify missing values
 % .......................................................................
 % Identify which values are missing and need to be generated in the
 % Monte-Carlo simulation. These values are identified based on them having
@@ -260,29 +260,14 @@ for i = 1:N_montecarlo_iterations
 % .......................................................................
 [new_conc, new_param] = generate_values2(missing_initial_concs, missing_params, randomization_type);
 
-% Load newly generate initail_concs and parameters into the mode
+% Load newly generate initail_concs and parameters into the model
 % .......................................................................
 model = load_model(new_conc, new_param, model);
 
-% 2.ii - simulate the model with those parameters
 
-% 2.iii - normalize results, evaluate if the outcome of this simulation 
-% meets within the experimental values 
-% If YES --> write parameter set to disk
-% if No --> don't
-% repeat
-
-%
-% Monte carlo generation bit - want this *in* the script, not seperate
-% function
-%
-% new_values = generate_values(parameter_to_determine)
-% integrate those values
-%
-
-% RUN SIMULATION!
-timer_count = 0;
-
+% RUN THE SIMULATION!
+% Try/catch loop so you can skip bad parameter sets using CTRL-C
+% and not quit the script
 try
     [t,x,names]= sbiosimulate(model);
 catch error
