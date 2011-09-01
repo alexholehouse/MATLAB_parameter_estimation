@@ -348,7 +348,7 @@ for i = 1:length(missing_params)
             % assuming a M of 100 000 Da for LPS we convert this to a range
             % of 1E-05 to 1E06 M-1/min
              new_param(i,1) = 146;
-             new_param(i,2) = randomizer(1E-05, 10^6, randomization_type);
+             new_param(i,2) = randomizer(10^7, 10^18, randomization_type);
             
         case 147      
             % main.P.ko_MK2- range 10^-4 to 10

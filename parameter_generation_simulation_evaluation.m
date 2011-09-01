@@ -34,7 +34,7 @@ clear all
 % This model should have any parameters or initial concentrations we're
 % going to generate random values for set to the replacement value, which
 % we define below
-model_name = 'p38_with_rep_vals.xml';
+model_name = 'p38_with_rep_vals_2.xml';
 
 % Replacement value is a numeric number the scripts identify as a
 % placeholder for a randomly generated number. This is variable so that we
@@ -72,13 +72,13 @@ LPS_molar_mass = 100000;
 % parameter generation steps
 
 % Set for the number of loops in the monte carlo simulation
-N_montecarlo_iterations = 1000;
+N_montecarlo_iterations = 10000;
 
 % Set the simulation length
 simulation_length = 7200; 
 
 % Set max timestep size of step through simulation (in seconds)
-max_timestep =100; 
+max_timestep = 100; 
 
 
 % Set the type of randomization the randomizer algorithm uses
@@ -103,6 +103,12 @@ plot_graphs_on_success = true;
 % Set name of folder results should go into (NB, we always check it exists,
 % and if it doesn't the folder is created)
 results_folder = 'results';
+
+% Sensetivity threshold for simulations to define a parameter set as "good"
+% - the higher the number, the better a fit the simulated data will be.
+% Value should be between 0 and -1 (though if threshold_val < 0 you are
+% looking for a negative correlation).
+threshold_val = 0.85;
 
 windows = true;
 unix = false;
@@ -161,6 +167,11 @@ model = sbmlimport(model_name);
 % |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 %                                PRE-SIMULATION SETUP
 % |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+if (windows && unix)
+    sprintf('ERROR - cannot be both Windows and *Nix system?!')
+    keyboard
+end
 
 if (windows)
     seperator = '\';
@@ -288,7 +299,7 @@ R2 = compare_sim_and_ex(Hsp27P_species_number, normalized_x, t, experimental_t, 
 
 
 % check if R values comply
-if (R1 < 0.55 || R2 < 0.55 || isnan(R1) || isnan(R2))
+if (R1 < threshold_val || R2 < threshold_val || isnan(R1) || isnan(R2))
     sprintf('Loop %d - This set does not comply! R1=%e and R2=%e',i, R1,R2)
     
 % if R values do comply...
