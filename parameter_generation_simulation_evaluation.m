@@ -34,7 +34,7 @@ clear all
 % This model should have any parameters or initial concentrations we're
 % going to generate random values for set to the replacement value, which
 % we define below
-model_name = 'p38_with_rep_vals_2.xml';
+model_name = 'p38_with_rep_vals.xml';
 
 % Replacement value is a numeric number the scripts identify as a
 % placeholder for a randomly generated number. This is variable so that we
