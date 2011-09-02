@@ -34,7 +34,7 @@ Based on the p38 model developed by Hendriks et al, developed by Alex Holehouse 
       </unitDefinition>
       <unitDefinition id="unit8" name="unit8">
         <listOfUnits>
-          <unit kind="second" exponent="-1" multiplie-009er="1" offset="0"/>
+          <unit kind="second" exponent="-1" multiplier="1" offset="0"/>
           <unit kind="dimensionless" multiplier="0.0166666666666667" offset="0"/>
         </listOfUnits>
       </unitDefinition>
