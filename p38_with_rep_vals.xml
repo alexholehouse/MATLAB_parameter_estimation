@@ -214,7 +214,7 @@ Based on the p38 model developed by Hendriks et al, developed by Alex Holehouse 
       <parameter id="main_P_kf_MKK3P_Ppase" name="main.P.kf_MKK3P_Ppase" value="99999" units="unit15"/>
       <parameter id="main_P_kc_MKK3" name="main.P.kc_MKK3" value="99999" units="unit6"/>
       <parameter id="main_cytosol_Rxn135_Kr" name="main.cytosol.Rxn135.Kr" value="1" units="unit11" constant="false"/>
-      <parameter id="main_P_kr_MKK3P_Ppase" name="main.P.kr_MKK3P_Ppase" value="0.246766" units="unit6"/>
+      <parameter id="main_P_kr_MKK3P_Ppase" name="main.P.kr_MKK3P_Ppase" value="99999" units="unit6"/>
       <parameter id="main_cytosol_Rxn1300_Flux" name="main.cytosol.Rxn1300.Flux" value="1" units="unit5" constant="false"/>
       <parameter id="main_nucleus_Rxn5_Kr" name="main.nucleus.Rxn5.Kr" value="1" units="unit8" constant="false"/>
       <parameter id="main_nucleus_Rxn1_Flux" name="main.nucleus.Rxn1.Flux" value="1" units="unit5" constant="false"/>
@@ -222,7 +222,7 @@ Based on the p38 model developed by Hendriks et al, developed by Alex Holehouse 
       <parameter id="main_cytosol_Rxn1529_Flux" name="main.cytosol.Rxn1529.Flux" value="1" units="unit5" constant="false"/>
       <parameter id="main_report_frxn_MKK3P" name="main.report.frxn_MKK3P" value="1" units="unit19" constant="false"/>
       <parameter id="main_P_kc_MKK6" name="main.P.kc_MKK6" value="99999" units="unit6"/>
-      <parameter id="main_P_kf_p38P_Ppase" name="main.P.kf_p38P_Ppase" value="1000000" units="unit15"/>
+      <parameter id="main_P_kf_p38P_Ppase" name="main.P.kf_p38P_Ppase" value="99999" units="unit15"/>
       <parameter id="main_P_kc_complexMKK3" name="main.P.kc_complexMKK3" value="99999" units="unit6"/>
       <parameter id="main_cytosol_Rxn6_Flux" name="main.cytosol.Rxn6.Flux" value="1" units="unit5" constant="false"/>
       <parameter id="main_cytosol_Rxn1531_Flux" name="main.cytosol.Rxn1531.Flux" value="1" units="unit5" constant="false"/>

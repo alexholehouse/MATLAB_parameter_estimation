@@ -128,7 +128,6 @@ for i = 1:length(missing_params)
             
         case 23        
             % main.P.kr_complex_p38P
-            % main.P.ki_MK2
             new_param(i,1) = 23;
             new_param(i,2) = randomizer(1E-04, 10, randomization_type);
             
@@ -208,7 +207,7 @@ for i = 1:length(missing_params)
             new_param(i,2) = randomizer(1E04, 1E07, randomization_type);
             
         case 72     
-            % main.P.kc_MKK6ppas - range 10^-2 to 10^2
+            % main.P.kc_MKK6ppase - range 10^-2 to 10^2
             new_param(i,1) = 72;
             new_param(i,2) = randomizer(1E-02, 1E02, randomization_type);
             
@@ -218,12 +217,12 @@ for i = 1:length(missing_params)
             new_param(i,2) = randomizer(1E04, 1E07, randomization_type);
             
         case 82     
-            % main.P.kr_MKK6P_Ppase- range 10^-4 to 10
+            % main.P.kr_MKK6P_Ppase - range 10^-4 to 10
             new_param(i,1) = 82;
             new_param(i,2) = randomizer(1E-04, 10, randomization_type);
             
         case 83      
-            % main.P.kc_MKK3ppase- range 10^-2 to 10^2
+            % main.P.kc_MKK3ppase - range 10^-2 to 10^2
             new_param(i,1) = 83;
             new_param(i,2) = randomizer(1E-02, 1E02, randomization_type);
             
@@ -234,7 +233,7 @@ for i = 1:length(missing_params)
             new_param(i,2) = randomizer(1E-04, 10, randomization_type);
         
         case 86      
-            % main.P.kf_MKK3P_Ppase- RANGE 10^4 to 10^7
+            % main.P.kf_MKK3P_Ppase - RANGE 10^4 to 10^7
             new_param(i,1) = 86;
             new_param(i,2) = randomizer(1E04, 1E07, randomization_type);
             
@@ -269,7 +268,7 @@ for i = 1:length(missing_params)
             new_param(i,2) = randomizer(1E-02, 1E02, randomization_type);
             
         case 103      
-            % main.P.kf_MKK3_complex- RANGE 10^4 to 10^7
+            % main.P.kf_MKK3_complex - RANGE 10^4 to 10^7
             new_param(i,1) = 103;
             new_param(i,2) = randomizer(1E04, 1E07, randomization_type);
             
@@ -290,7 +289,7 @@ for i = 1:length(missing_params)
             new_param(i,2) = randomizer(1E04, 1E07, randomization_type);
             
         case 109     
-            % main.P.ko_p38PMK2P- range 10^-4 to 10
+            % main.P.ko_p38PMK2P - range 10^-4 to 10
             new_param(i,1) = 109;
             new_param(i,2) = randomizer(1E-04, 10, randomization_type);
             
@@ -300,9 +299,10 @@ for i = 1:length(missing_params)
             new_param(i,2) = randomizer(1E-04, 10, randomization_type);
             
         case 113      
-            % main.P.kr_MK2P_Ppase  - range 10^-4 to 10
+            % main.P.kr_MK2P_Ppase - range 10^-4 to 10
             new_param(i,1) = 113;
             new_param(i,2) = randomizer(1E-04, 10, randomization_type);
+        
         case 122     
             % main.P.k_activation - range 10^-4 to 100
             new_param(i,1) = 122;
@@ -346,17 +346,17 @@ for i = 1:length(missing_params)
         case 146      
             % main.P.kf_LPS_TLR4 - original range is in 1/ng/ml/min, which
             % assuming a M of 100 000 Da for LPS we convert this to a range
-            % of 1E-05 to 1E06 M-1/min
+            % of 1E07 to 1E18 M-1/min
              new_param(i,1) = 146;
              new_param(i,2) = randomizer(10^7, 10^18, randomization_type);
             
         case 147      
-            % main.P.ko_MK2- range 10^-4 to 10
+            % main.P.ko_MK2 - range 10^-4 to 10
             new_param(i,1) = 147;
             new_param(i,2) = randomizer(1E-04, 10, randomization_type);
             
         case 148     
-            % main.P.kc_p38P_Ppase_nucleus- range 10^-2 to 10^2
+            % main.P.kc_p38P_Ppase_nucleus - range 10^-2 to 10^2
             new_param(i,1) = 148;
             new_param(i,2) = randomizer(1E-02, 1E02, randomization_type);
             
@@ -372,6 +372,7 @@ for i = 1:length(missing_params)
             
         otherwise
             sprintf('None found for i_value = %d', i)
+            keyboard;
             
             
                 

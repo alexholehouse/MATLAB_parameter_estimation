@@ -58,7 +58,7 @@ LPS_species_number = 33;
 % Additionally, molar mass is set to 100000 based on previous work,
 % although it's not a defined number so we can change the value here if
 % need be
-LPS_concentration = 10;
+LPS_concentration = 100;
 LPS_molar_mass = 100000;
 
 % Dex values - to be added later
@@ -72,7 +72,7 @@ LPS_molar_mass = 100000;
 % parameter generation steps
 
 % Set for the number of loops in the monte carlo simulation
-N_montecarlo_iterations = 10000;
+N_montecarlo_iterations = 50000;
 
 % Set the simulation length
 simulation_length = 7200; 
@@ -108,7 +108,7 @@ results_folder = 'results';
 % - the higher the number, the better a fit the simulated data will be.
 % Value should be between 0 and -1 (though if threshold_val < 0 you are
 % looking for a negative correlation).
-threshold_val = 0.85;
+threshold_val = 0.88;
 
 windows = true;
 unix = false;
@@ -141,9 +141,15 @@ experimental_t = [0,300,1200,1800,2400,2700,3000,3600,4200,5400,6300,7200];
 experimental_p38P_10 = [0.003485893,0.023448276,0.256476489,0.423197492,0.47646395,0.508163009,0.566043887,0.492112853,0.282959248,0.145329154,0.111423197,0.125166144];
 experimental_Hsp27P_10 = [0.000543905,0.007139463,0.303870883,0.535219251,0.606373416,0.711490127,0.708512965,0.532745916,0.260702038,0.081408198,0.060682572,0.054819853];
 
+experimental_p38P_100 = [-0.005642633,0.031172414,0.391197492,0.617103448,0.59784326,0.639373041,0.58831348,0.49261442,0.311648903,0.155059561,0.119949843,0.169705329];
+experimental_Hsp27P_100 = [-0.003463813,0.015017491,0.522669369,0.713368029,0.793797198,0.774926573,0.727177479,0.504073559,0.283649084,0.104881973,0.083171593,0.07795011];
+
 % Normalize that data
 normalized_experimental_p38P_10 = get_normalized(experimental_p38P_10');
 normalized_experimental_Hsp27P_10 = get_normalized(experimental_Hsp27P_10');
+
+normalized_experimental_p38P_100 = get_normalized(experimental_p38P_100');
+normalized_experimental_Hsp27P_100 = get_normalized(experimental_Hsp27P_100');
 
 % to add more experimental data, add another block with the same
 % structure/format below. 
@@ -197,7 +203,11 @@ n_moles = g_per_l_value/LPS_molar_mass;
 % 33 - if not adjust appropriately. It's more straight forward to hardcode
 % this than have a lookup!
 
-model.species(LPS_species_number).initialAmount = n_moles;
+
+% Assumes the cytoplasm is compartment 2!
+LPS_M_conc = n_moles / model.compartments(2).capacity;
+
+model.species(LPS_species_number).initialAmount = LPS_M_conc;
 
 % GC
 % ... same thing for GC (depends on conc)
@@ -294,8 +304,8 @@ normalized_x = get_normalized(x);
 % .......................................................................
 % Note that as more empyical data is available, you'll need to add more
 % compare_sim_and_ex function calls with the same structure here
-R1 = compare_sim_and_ex(p38P_species_number, normalized_x, t, experimental_t, normalized_experimental_p38P_10);
-R2 = compare_sim_and_ex(Hsp27P_species_number, normalized_x, t, experimental_t, normalized_experimental_Hsp27P_10);
+R1 = compare_sim_and_ex(p38P_species_number, normalized_x, t, experimental_t, normalized_experimental_p38P_100);
+R2 = compare_sim_and_ex(Hsp27P_species_number, normalized_x, t, experimental_t, normalized_experimental_Hsp27P_100);
 
 
 % check if R values comply
@@ -325,14 +335,14 @@ else
         % Plot and save graphs as .fig files in the relevant folders        
         if (plot_graphs_on_success)
             figure()
-            plot(t, normalized_x(:,p38P_species_number), experimental_t, normalized_experimental_p38P_10)
-            legend('simulation - p38P','empyrical - p38P')
+            plot(t, normalized_x(:,p38P_species_number), experimental_t, normalized_experimental_p38P_100)
+            legend('simulation - p38P','empyrical - p38P_100')
             title(sprintf('p38 - parameter set %d', i))
             saveas(gcf, sprintf('p38P_%d.fig', i))
             close()
             figure()
-            plot(t, normalized_x(:,Hsp27P_species_number), experimental_t, normalized_experimental_Hsp27P_10)
-            legend('simulation - Hsp27P','empyrical - Hsp27P')
+            plot(t, normalized_x(:,Hsp27P_species_number), experimental_t, normalized_experimental_Hsp27P_100)
+            legend('simulation - Hsp27P','empyrical - Hsp27P_100')
             title(sprintf('Hsp27P - parameter set %d', i))
             saveas(gcf, sprintf('Hsp27P_%d.fig', i))
             close ()
